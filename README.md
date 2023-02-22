@@ -55,28 +55,25 @@ $max \quad \sum\limits_{i\in S}^{{}}{{{u}_{i}}}$
 
 ## 符号说明
 
-::: center
-                   符号                                                                  含义                                                  
+| T    | SRTP 导师的集合                                              |
+| ---- | ------------------------------------------------------------ |
+| S    | 参加SRTP 的学生的集合                                        |
+| P    | 研究方向的集合                                               |
+| $a_{ij}$ | 如果学生i 最终选择老师j, 则aij = 1; 否则，aij = 0            |
+|    $\alpha_j$     |   分配给老师$j$的学生数量的下限                                                           |
+| $\beta_j$ | 分配给老师$j$的学生数量的下限 |
+| $TS_i$ | 对于学生$i$所中意的导师的集合 |
+| $PS_i$ | 对于学生$i$所中意的研究方向的集合 |
+| $T_P$ | 对于研究方向中有研究方向$P$的老师的集合 |
+| $\widehat{\vartheta_i }$ |松弛变量,用于标记学生$i$是否被中意的SRTP导师录取|
+| $\overline{\overline{\vartheta_i }}$ |松弛变量,用于标记学生$i$是否被中意的SRTP研究方向录取|
+| $u_i$ |学生$i$的满意度：如果选到了中意的研究方向或者中意的导师中的至少1个，则满意度为$1$， 否则满意度为$0$|
+| $U$ |总满意度，满足$U=\sum\limits_{i\in S}^{{}}{{{u}_{i}}}$|
+| $tw_{ij}$ |学生$i$选到导师$j$的满意度|
+| $tt$ |对每个学生收集了$tp$个排序的导师志愿|
+| $pw_{ip}$ |为学生$i$选到研究方向$p$的满意度|
+| $tp$ |表示对每个学生收集了$tp$个排序的研究方向志愿|
 
--------------------------------------- ----------------------------------------------------------------------------------------------------- --
-                    T                                                               SRTP导师的集合                                             
-                    S                                                            参加SRTP的学生的集合                                          
-                    P                                                               研究方向的集合                                             
-                 $a_{ij}$                                      如果学生$i$最终选择老师$j$,则$a_{ij}=1$; 否则，$a_{ij}=0$                       
-                $\alpha_j$                                                   分配给老师$j$的学生数量的下限                                     
-                $\beta_j$                                                    分配给老师$j$的学生数量的下限                                     
-                  $TS_i$                                                     对于学生$i$所中意的导师的集合                                     
-                  $PS_i$                                                   对于学生$i$所中意的研究方向的集合                                   
-                  $T_P$                                                 对于研究方向中有研究方向$P$的老师的集合                                
-         $\widehat{\vartheta_i }$                                  松弛变量,用于标记学生$i$是否被中意的SRTP导师录取                            
-   $\overline{\overline{\vartheta_i }}$                          松弛变量,用于标记学生$i$是否被中意的SRTP研究方向录取                          
-                  $u_i$                   学生$i$的满意度：如果选到了中意的研究方向或者中意的导师中的至少1个，则满意度为$1$， 否则满意度为$0$  
-                   $U$                                          总满意度，满足$U=\sum\limits_{i\in S}^{{}}{{{u}_{i}}}$                         
-                $tw_{ij}$                                                     学生$i$选到导师$j$的满意度                                       
-                   $tt$                                                  对每个学生收集了$tp$个排序的导师志愿                                  
-                $pw_{ip}$                                                  为学生$i$选到研究方向$p$的满意度                                    
-                   $tp$                                              表示对每个学生收集了$tp$个排序的研究方向志愿                              
-:::
 
 ## 模型建立
 
@@ -86,8 +83,8 @@ $max \quad \sum\limits_{i\in S}^{{}}{{{u}_{i}}}$
 否则，$a_{ij}=0$，显然$$\forall i\in S \quad \sum\limits_{j\in T}^{{}}{{{a}_{ij}}}=1$$
 
 又学生只能选一个项目，因此**不引入松弛变量时**，可以建立混合整数线性规划：
-
-$$\begin{matrix}
+$$
+\begin{matrix}
   & \max \sum\limits_{i\in S}^{{}}{{{u}_{i}}} \\ 
  & \left\{ \begin{matrix}
    \sum\limits_{j\in T}^{{}}{{{a}_{ij}}}=1  \\
@@ -96,17 +93,21 @@ $$\begin{matrix}
    \overline{\overline{\vartheta }},\widehat{\vartheta },{{u}_{i}},{{a}_{ij}}\in \{0,1\}  \\
 \end{matrix} \right. \\ 
  & \forall i\in S,\forall j\in T,\forall p\in P{{S}_{i}} \\ 
-\end{matrix}$$
-
+\end{matrix}
+$$
 为了满足学生只能选择一个$SRTP$项目，即只能有至多一个选到的导师，以及至多一个选到的研究方面，我们可以引入两个松弛变量$\widehat{\vartheta_i }$以及$\overline{\overline{\vartheta_i }}$
 
 实际上，对于$\overline{\overline{\vartheta }}$和$\widehat{\vartheta }$，我们可以放宽要求为$$\overline{\overline{\vartheta }},\widehat{\vartheta }\in {{\mathbb{R}}^{+}}$$，
 但是最终由于$a_ij$为0-1变量，于$\overline{\overline{\vartheta }}$和$\widehat{\vartheta }$会被约束为0-1变量。为了方便运算，可以直接让于$\overline{\overline{\vartheta }} \quad \widehat{\vartheta } \in {0,1}$
 
-**首先**，对于研究方向，有： $$\left\{ \begin{matrix}
+**首先**，对于研究方向，有： 
+$$
+\left\{ \begin{matrix}
     \forall i\in S \quad \forall p\in P{{S}_{i}} \quad \overline{\overline{\vartheta }}\in \{0,1\} \quad \overline{\overline{\vartheta }}\le 1-\sum\limits_{j\in {{T}_{p}}}^{{}}{{{a}_{ij}}}  \\
     \forall i\in S \quad \overline{\overline{\vartheta }}\in \{0,1\} \quad \overline{\overline{\vartheta }}\ge 1-\sum\limits_{p\in P{{S}_{i}}}^{{}}{\sum\limits_{j\in {{T}_{p}}}^{{}}{{{a}_{ij}}}}  \\
-\end{matrix} \right.$$
+\end{matrix} \right.
+$$
+
 
 如果学生没有匹配到$PS_i$中的一个，则$\sum\limits_{j\in {{T}_{p}}}^{{}}{{{a}_{ij}}}=0$,
 由于两个不等式的夹逼$$\left\{ \begin{matrix}
@@ -128,12 +129,14 @@ $$\begin{matrix}
 
 之后，我们定义$u_i$为学生的满意度,按照模型假设中的那样，如果选到了中意的研究方向或者中意的导师中的至少1个，则满意度为$1$，否则满意度为$0$。 我们的目标(object) 可以变为总满意度$U=\sum\limits_{i\in S}^{{}}{{{u}_{i}}}$最大化
 
-为了，得到单个学生的满意度$u_i$，可以引入下列的式子来进行夹逼：$$\left\{ \begin{matrix}
+为了，得到单个学生的满意度$u_i$，可以引入下列的式子来进行夹逼：
+$$
+\left\{ \begin{matrix}
     2-\overline{\overline{\vartheta }}-\widehat{\vartheta }\ge {{u}_{i}}  \\
     1-\overline{\overline{\vartheta }}\le {{u}_{i}}  \\
     1-\widehat{\vartheta }\le {{u}_{i}}  \\
-\end{matrix} \right. \quad \forall i\in S$$
-
+\end{matrix} \right. \quad \forall i\in S
+$$
 由于，只要选到中意的研究方向，$\overline{\overline{\vartheta }}=0$,由于$$1-\overline{\overline{\vartheta }}\le {{u}_{i}}$$使得其满意度大于等于1；只要选到了中意的导师，$\widehat{\vartheta }=0$,
 由于$$1-\widehat{\vartheta }\le u$$使得其满意度大于等于1。同时有约束$$2-\overline{\overline{\vartheta }}-\widehat{\vartheta }\ge {{u}_{i}}$$，
 这就使得$1 \le u_i$；如果中意的研究方向和中意的导师同时选到，那么$1\le {{u}_{i}}\le 2$,
@@ -144,10 +147,9 @@ $$\begin{matrix}
 得到$u_i=0$
 
 考虑到我们的目标是让学生能够选到中意的导师或者研究方向中的其中一个即可，可以再增加$u_i \in \{0,1\}$作为约束
-
- \
 基于上述描述，**最后可以得到下述混合整数线性规划模型 MILP I：**
-$$\begin{matrix}
+$$
+\begin{matrix}
     & \max \sum\limits_{i\in S}^{{}}{{{u}_{i}}} \\ 
     & s.t.\left\{ \begin{matrix}
         \sum\limits_{j\in T}^{{}}{{{a}_{ij}}}=1  \\
@@ -161,7 +163,8 @@ $$\begin{matrix}
         \overline{\overline{\vartheta }},\widehat{\vartheta },{{u}_{i}},{{a}_{ij}}\in \{0,1\}  \\
     \end{matrix} \right. \\ 
     & \forall i\in S,\forall j\in T,\forall p\in P{{S}_{i}} \\ 
-\end{matrix}$$
+\end{matrix}
+$$
 
 ## 二步优化
 
@@ -174,7 +177,8 @@ $$\begin{matrix}
 此时为了不改变原先上述方程求出的结果，我们可以将原来方程求出的结果作为约束条件，定义$\widehat{U}=\max \sum\limits_{i\in S}^{{}}{{{u}_{i}}}$为前一模型计算得到的最大总满意度，我们可以得到一个**新的混合整数线性规划模型，对上述解进行进一步的优化
 MILP II:**
 
-$$\begin{matrix}
+$$
+\begin{matrix}
     & \max \sum\limits_{i\in S}^{{}}{\sum\limits_{j\in T{{S}_{i}}}^{{}}{t{{w}_{ij}}{{a}_{ij}}}+}\sum\limits_{i\in S}^{{}}{\sum\limits_{p\in P{{S}_{i}}}^{{}}{\sum\limits_{j\in {{T}_{p}}}^{{}}{p{{w}_{ip}}{{a}_{ij}}}}} \\ 
     & s.t.\left\{ \begin{matrix}
         \widehat{U}=\sum\limits_{i\in S}^{{}}{{{u}_{i}}}  \\
@@ -189,7 +193,9 @@ $$\begin{matrix}
         \overline{\overline{\vartheta }},\widehat{\vartheta },{{u}_{i}},{{a}_{ij}}\in \{0,1\}  \\
     \end{matrix} \right. \\ 
     & \forall i\in S,\forall j\in T,\forall p\in P{{S}_{i}} \\ 
-\end{matrix}$$
+\end{matrix}
+$$
+
 
 ## 模型求解
 
