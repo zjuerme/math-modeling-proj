@@ -1,2 +1,0 @@
-# math modeling proj
- 
